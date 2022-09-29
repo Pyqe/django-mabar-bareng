@@ -12,15 +12,14 @@ from django.http import HttpResponseRedirect
 from django.urls import reverse
 from wishlist.models import BarangWishlist
 
-# Create your views here.
-
 @login_required(login_url='/wishlist/login/')
 def show_wishlist(request):
     data_barang_wishlist = BarangWishlist.objects.all()
     context = {
-        'list_barang': data_barang_wishlist,
-        'nama': 'Pikatan Arya Bramajati',
-        'last_login': request.COOKIES['last_login'],
+        "list_barang": data_barang_wishlist,
+        "nama": "Pikatan Arya Bramajati",
+        "last_login": request.COOKIES["last_login"],
+        "username": request.user
     }
     return render(request, "wishlist.html", context)
 

@@ -1,28 +1,42 @@
 {% extends 'base.html' %}
 
 {% block content %}
-<h5>Nama: </h5>
-<p>{{nama}}</p>
 
-<table>
-    <tr>
-    <th>Nama Barang</th>
-    <th>Harga Barang</th>
-    <th>Deskripsi</th>
-    </tr>
-    {% comment %} Tambahkan data di bawah baris ini {% endcomment %}
-    {% for barang in list_barang %}
-        <tr>
-            <th>{{barang.nama_barang}}</th>
-            <th>{{barang.harga_barang}}</th>
-            <th>{{barang.deskripsi}}</th>
-        </tr>
-    {% endfor %}
-</table>
+    <ul class = "nav nav-fill navbar-expand" style = "background-color: lavender;">
+        <li class = "nav-item">
+            <h1>{{nama}} bersama {{username}}</h1>
+        </li>
 
-<h5>Sesi terakhir login: {{ last_login }}</h5>
+        <li class = "nav-item">
+            <button type = "button" class="btn btn-outline-primary btn-lg"><a href = "{% url 'wishlist:logout' %}">👉 LOGOUT 👈</a></button>
+        </li>
+    </ul>
 
-<button><a href="{% url 'wishlist:logout' %}">Logout</a></button>
+    <br/><br/><br/>
+
+    <div class = "container-sm">
+        <table class = "table text-center table-striped table-hover table-bordered" style = "border-color: black;">
+            <thead style = "background-color: purple; color: white">
+                <tr>
+                    <th>Nama Barang</th>
+                    <th>Harga Barang</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+            
+            <tbody style = "background-color: lavender;">
+                {% for barang in list_barang %}
+                    <tr>
+                        <th>{{barang.nama_barang}}</th>
+                        <th>{{barang.harga_barang}}</th>
+                        <th>{{barang.deskripsi}}</th>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <h5 class = "text-center">Sesi terakhir login: {{last_login}}</h5>
 
 {% endblock content %}
 
