@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <script>
+        alert("hi")
+        fetch(http://localhost:8000/wishlist/json/)
+        .then((data) => data.json())
+        .then((data) =>
+        {
+            console.log(data);
+            for(let i = 0; i < data.length(); i++)
+            {
+                let baris = document.createElement("tr");
+                let nama = document.createElement("th");
+                let harga = document.createElement("th");
+                let deskripsi = document.createElement("th");
+                nama.innerHTML = data[i].fields.nama_barang;
+                harga.innerHTML = data[i].fields.harga_barang;
+                deskripsi.innerHTML = data[i].fields.deskripsi;
+                baris.append(name, price, desc);
+                document.getElementById("tabel-wishlist").appendChild(new_row);
+            }
+        })
+    </script>
+{% endblock meta %}
+
+{% block content %}
+
+    <ul class = "nav nav-fill navbar-expand" style = "background-color: lavender;">
+        <li class = "nav-item">
+            <h1>{{nama}} bersama {{username}}</h1>
+        </li>
+
+        <li class = "nav-item">
+            <button type = "button" class="btn btn-outline-primary btn-lg"><a href = "{% url 'wishlist:logout' %}">👉 LOGOUT 👈</a></button>
+        </li>
+    </ul>
+
+    <br/><br/><br/>
+
+    <div class = "container-sm">
+        <table id = "tabel-wishlist" class = "table text-center table-striped table-hover table-bordered" style = "border-color: black;">
+            <thead style = "background-color: purple; color: white">
+                <tr>
+                    <th>Nama Barang</th>
+                    <th>Harga Barang</th>
+                    <th>Deskripsi</th>
+                </tr>
+            </thead>
+            
+            <tbody style = "background-color: lavender;"></tbody>
+        </table>
+    </div>
+
+    <h5 class = "text-center">Sesi terakhir login: {{last_login}}</h5>
+
+{% endblock content %}
+
